@@ -13,8 +13,8 @@ const NavBar = () => {
 				<Link to='/category/Pantallas' className='py-3 text-white text-decoration-none fs-5'>
 					Pantallas
 				</Link>
-				<Link to='/galeria' className='py-3 text-white text-decoration-none fs-5'>
-					Galería
+				<Link to='/cart' className='py-3 text-white text-decoration-none fs-5'>
+					Carrito
 				</Link>
 				<Link to='/contacto' className='py-3 text-white text-decoration-none fs-5'>
 					Contacto

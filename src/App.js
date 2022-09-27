@@ -9,16 +9,18 @@ import Header from './components/Header/Header';
 import Navigation from './components/Navigation/Navigation';
 
 // VIEWS
-import Home from './views/Home/Home';
 import Contacto from './views/Contacto/Contacto';
 import Galeria from './views/Galeria/Galeria';
 import Servicios from './views/Servicios/Servicios';
 import Clientes from './views/Clientes/Clientes';
 import ItemDetail from './views/ItemDetail/ItemDetail';
 import ItemList from './components/ItemList/ItemList';
+import Cart from './components/Cart';
+import CartContextProvider from './components/CartContext';
 
 const App = () => {
 	return (
+		<CartContextProvider>
 		<Router>
 			<div className='App'>
 				<Header />
@@ -30,13 +32,14 @@ const App = () => {
 
 					
 					<Route path='/contacto' element={<Contacto />} />
-					<Route path='/galeria' element={<Galeria />} />
+					<Route path='/cart' element={<Cart />} />
 					<Route path='/clientes' element={<Clientes />} />
 					<Route path='/servicios' element={<Servicios />} />
 					<Route path='/detail/:prod_id' element={<ItemDetail />} />
 				</Routes>
 			</div>
 		</Router>
+		</CartContextProvider>
 	);
 };
 

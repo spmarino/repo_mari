@@ -14,7 +14,7 @@ const ItemList = () => {
     axios(
       "https://my-json-server.typicode.com/mariantonia416/unlimited-project-react/productos"
     ).then((res) => res.data)
-	.then((res) => setUsers(type?res.filter((product)=> product.type == type):res));
+	.then((res) => setUsers(type?res.filter((product)=> product.type === type):res));
   }, [type]);
 
   return (
