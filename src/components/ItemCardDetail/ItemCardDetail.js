@@ -1,69 +1,54 @@
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import ButtonBase from '@mui/material/ButtonBase';
-import ItemCount from "../Counter/Counter";
-import { useContext } from "react";
-import { CartContext } from '../CartContext';
+import * as React from 'react'
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
-const Img = styled('img')({
-  margin: 'auto',
-  display: 'block',
-  maxWidth: '100%',
-  maxHeight: '100%',
-});
+import ItemCount from '../Counter/Counter'
+import Image from 'react-bootstrap/Image'
+import { useContext } from 'react'
+import { CartContext } from '../Cart/CartContext';
 
-const ItemCardDetail = ({ data }) => {
+const ItemCardDetail = ({ itemsData }) => {
 
     const {AddToCart} = useContext(CartContext)
 
-  const onAdd = (counter) => {
-    AddToCart(data, counter)
-  };
+    const onAdd = (counter) => {
+        AddToCart(itemsData, counter)
+    }
     return (
-        <Box
-        className='w-75'
-        sx={{
-            p: 4,
-            margin: 'auto',
-            flexGrow: 1,
-            backgroundColor: (theme) =>
-            theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-        }}
-        >
-        <Grid container spacing={6} className='align-items-center'>
-            <Grid item>
-                <ButtonBase className='w-100'>
-                    <Img src={data.image} alt='Unlimited' />
-                </ButtonBase>
-            </Grid>
-            <Grid item xs={12} sm container>
-                <Grid item xs container direction="column" spacing={2}>
-                    <Grid item xs>
-                        <Typography className='fs-2' component="div">
-                        {data.nombre}
-                        </Typography>
-                        <Typography className='fs-6 text-muted'>
-                        {data.type}
-                        </Typography>
-                        <Typography className='mt-4 fs-5' component="div">
-                            Precio
-                        </Typography>
-                        <Typography className='fs-5' component="div">
-                            $COP {data.precio}
-                        </Typography>
-                        <Typography className='mt-3 fs-5 fw-light' component="div">
-                            Cantidad
-                        </Typography>
-                        <ItemCount stock={10} inicial={1} onAdd={onAdd} />
-                    </Grid>
-                </Grid>
-            </Grid>
-        </Grid>
-    </Box>
-    )
-}
+        <Container className='container'>
+            <Row className='d-flex flex-wrap justify-content-center py-5'>
+                <Col className='d-flex justify-content-center col-12 col-lg-6 col-xl-6'>
+                    <Image className='img-fluid' src={itemsData.img} alt='Unlimited' />
+                </Col>
+                <Col className='col-12 col-sm-9 col-lg-6 col-xl-6 p-4 p-xl-0'>
+                    
+                    <Col className='fs-2'>
+                        {itemsData.title}
+                    </Col>
+                
+                    <Col className='fs-6 text-muted'>
+                        Categoría: {itemsData.category}
+                    </Col>
+                
+                    <Col className='mt-4 fs-5'>
+                        $COP {itemsData.price}
+                    </Col>
+                
+                    <Col className='mt-3 fs-5 fw-light'>
+                        Cantidad
+                        <ItemCount stock={10} inicial={1} onAdd={onAdd}/>
+                    </Col>
+                
+                    <Col className='mt-5 fs-5 fw-light'>
+                        <span className='fw-bold'> Descripción del producto: </span>
+                            {itemsData.description}
+                    </Col>
+                
+                </Col>
+            </Row>
+        </Container>
+	);
+};
 
 export default ItemCardDetail;

@@ -1,44 +1,42 @@
-//BOOTSTRAP
-import 'bootstrap/dist/css/bootstrap.css';
+import React from 'react';
+
+// BOOTSTRAP
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // REACT ROUTER DOM
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 // COMPONENTS
 import Header from './components/Header/Header';
-import Navigation from './components/Navigation/Navigation';
+
+// CONTEXT
+
 
 // VIEWS
 import Contacto from './views/Contacto/Contacto';
-import Galeria from './views/Galeria/Galeria';
-import Servicios from './views/Servicios/Servicios';
-import Clientes from './views/Clientes/Clientes';
 import ItemDetail from './views/ItemDetail/ItemDetail';
-import ItemList from './components/ItemList/ItemList';
-import Cart from './components/Cart';
-import CartContextProvider from './components/CartContext';
+import Home from './views/Home/Home';
+import Category from './views/Category/Category';
+import Conocenos from './views/Conocenos/Conocenos';
+import Cart from './components/Cart/Cart';
+import CartContextProvider from './components/Cart/CartContext';
+import CheckOut from './components/CheckOut/CheckOut';
 
 const App = () => {
 	return (
 		<CartContextProvider>
-		<Router>
-			<div className='App'>
+			<Router>
 				<Header />
-				<Navigation />
 				<Routes>
-					<Route path='/' element={<ItemList />} />
-					<Route path='/category/:type' element={<ItemList />} />
-
-
-					
-					<Route path='/contacto' element={<Contacto />} />
-					<Route path='/cart' element={<Cart />} />
-					<Route path='/clientes' element={<Clientes />} />
-					<Route path='/servicios' element={<Servicios />} />
-					<Route path='/detail/:prod_id' element={<ItemDetail />} />
+					<Route path="/" element={<Home />} />
+					<Route path="/category/:category" element={<Category />} />
+					<Route path="/conocenos" element={<Conocenos />} />
+					<Route path="/contacto" element={<Contacto />} />
+					<Route path="/cart" element={<Cart />} />
+					<Route path="/checkout" element={<CheckOut />} />
+					<Route path="/detail/:id" element={<ItemDetail />} />
 				</Routes>
-			</div>
-		</Router>
+			</Router>
 		</CartContextProvider>
 	);
 };
